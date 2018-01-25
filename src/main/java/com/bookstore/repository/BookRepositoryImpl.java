@@ -47,4 +47,20 @@ public class BookRepositoryImpl implements BookRepository {
     public Book findBookById(long id) {
         return booksStore.get(id);
     }
+
+    @Override
+    public void save(Book book) {
+        booksStore.put(4L, book);
+    }
+
+    @Override
+    public void update(Long id, Book book) {
+        booksStore.replace(id, book);
+    }
+
+    @Override
+    public void delete(Long id) {
+        booksStore.remove(id);
+    }
+
 }

@@ -3,10 +3,7 @@ package com.bookstore.controller;
 import com.bookstore.model.Book;
 import com.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,20 @@ public class BookController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Book findBookById(@PathVariable long id){
         return bookService.findById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void createBook(@RequestBody Book book){
+        bookService.save(book);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void update(@PathVariable Long id, @RequestBody Book book){
+        bookService.update(id, book);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id){
+        bookService.delete(id);
     }
 }
